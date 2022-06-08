@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_08_124850) do
+ActiveRecord::Schema.define(version: 2022_06_08_162336) do
 
   create_table "appointments", force: :cascade do |t|
     t.string "subject"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_06_08_124850) do
     t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "recom"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
   end

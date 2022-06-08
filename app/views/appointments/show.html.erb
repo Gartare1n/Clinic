@@ -27,7 +27,35 @@
             </div>
             <p class="mb-1"><%= link_to @appointment.patient.email, patient_path(@appointment.patient) %></p>    
           </div>
-        <% end %>    
+        <% end %>
+
+        <% if @appointment.recom != nil%>
+          <div class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Doctor's recommendation</h5>
+            </div>
+            <p class="mb-1"><%= @appointment.recom %></p>
+          </div>
+        <% end %>
+
+
+
+        <% if doctor_signed_in? && @appointment.recom == nil%>
+          <%= form_with(model: @appointment, local: true) do |form| %>
+            <div class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Doctor's recommendation</h5>
+              </div>
+              <div class="form-outline mb-3">
+                <%= form.text_field :recom, autofocus: true, placeholder: "Recommendation", class:"form-control form-control-lg" %>                                      
+              </div>
+              <div class="actions text-center">
+                <%= form.submit 'Submit', class:"btn btn-primary btn-lg btn-rounded text-white mt-1" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+          
       </div>
     </div>
 

@@ -5,6 +5,9 @@ class Ability
     if user.class.name == 'Doctor'
       can :read, Patient
       can :read, Appointment
+      can :update, Appointment do |appointment|
+        appointment.try(:doctor) == user
+     end
       can :destroy, Appointment do |appointment|
         appointment.try(:doctor) == user
       end

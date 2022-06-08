@@ -13,6 +13,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1
   def show
+    #@appointment = Appointment.find(appointment_params)
   end
 
   # GET /appointments/new
@@ -59,7 +60,7 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:subject, :doctor_id, :patient_id)
+      params.require(:appointment).permit(:subject, :doctor_id, :patient_id, :recom)
     end
 
     def check_user
