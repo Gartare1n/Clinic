@@ -11,6 +11,7 @@ class Ability
     elsif user.class.name == 'Patient'
       can :read, Doctor
       can :read, Appointment
+      can :read, Category
       can :create, Appointment
       can :edit, Appointment
      can :update, Appointment do |appointment|
