@@ -27,13 +27,18 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   def create
     @appointment.patient_id = current_patient.id
-
+    if(Appointment.where(doctor_id: @appointment.doctor_id, recom: nil).count < 10)
     respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to @appointment, notice: "Appointment was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+        if @appointment.save
+          format.html { redirect_to @appointment, notice: "Appointment was successfully created." }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+        end
       end
+    else
+      #format.html { redirect_to root_path, notice: "Nothing happened:(" }
+      flash[:notice] = "This Doctor have maximum appointments!"
+      redirect_to root_path
     end
   end
 
